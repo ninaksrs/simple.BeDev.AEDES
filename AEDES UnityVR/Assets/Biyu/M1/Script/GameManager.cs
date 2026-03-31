@@ -18,6 +18,16 @@ public class GameManager : MonoBehaviour
         InvokeRepeating("Settime",0,1);
         instance = this;
     }
+    private void Start()
+    {
+        if (SaveManager.instance != null)
+        {
+            score = SaveManager.instance.a.Score;
+            print(SaveManager.instance.a.Score);
+            setscore(score);
+        }
+        
+    }
     private void Update()
     {
         questUI.SetActive(player.L_gripValue);
@@ -43,6 +53,10 @@ public class GameManager : MonoBehaviour
     {
         score += sc;
         scoretext.text = "Score: "+ score.ToString();
+        if (SaveManager.instance != null){
+            SaveManager.instance.a.Score = score;
+            SaveManager.SavePlayerData(SaveManager.instance.a);
+        }
     }
     public void GameOver()
     {
