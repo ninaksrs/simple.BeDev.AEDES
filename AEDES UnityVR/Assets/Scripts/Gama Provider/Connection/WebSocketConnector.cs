@@ -6,8 +6,9 @@ using System.Text;
 using NativeWebSocket;
 public abstract class WebSocketConnector : MonoBehaviour
 {
-
+    [SerializeField]
     protected string DefaultIP = "localhost";
+    [SerializeField]
     protected string DefaultPort = "8080";
 
 
