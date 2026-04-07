@@ -8,9 +8,9 @@ using UnityEngine.InputSystem;
 
 public class SendReceiveMessageExample : SimulationManager
 {
+
  GAMAMessage message = null;
-    public int score;
-    public Vector3 pos;
+
     protected override void ManageOtherMessages(string content)
  {
      message = GAMAMessage.CreateFromJSON(content);
@@ -19,14 +19,13 @@ public class SendReceiveMessageExample : SimulationManager
 //action activated at the end of the update phase (every frame)
  protected override void OtherUpdate()
  {
-        score = GameManager.instance.score;
-     if (IsGameState(GameState.GAME))
+
+     if (IsGameState(GameState.GAME) && UnityEngine.Random.Range(0.0f, 1.0f) < 0.002f )
      {
-            string mes = transform.position.ToString() ;
-            //call the action "receive_message" from the unity_linker agent with two arguments: the id of the player and a message
-            Dictionary<string, string> args = new Dictionary<string, string> {
+            string mes = "A message from Unity at time: " + Time.time;
+          //call the action "receive_message" from the unity_linker agent with two arguments: the id of the player and a message
+         Dictionary<string, string> args = new Dictionary<string, string> {
          {"id",ConnectionManager.Instance.GetConnectionId() },
-             { "score", score.ToString()},
          {"mes",  mes }};
 
             Debug.Log("sent to GAMA: " + mes);

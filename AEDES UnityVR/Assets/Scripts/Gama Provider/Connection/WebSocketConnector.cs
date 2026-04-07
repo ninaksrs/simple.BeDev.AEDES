@@ -7,8 +7,8 @@ using NativeWebSocket;
 public abstract class WebSocketConnector : MonoBehaviour
 {
 
-    protected string DefaultIP = "10.215.211.92";
-    protected string DefaultPort = "15000";
+    protected string DefaultIP = "localhost";
+    protected string DefaultPort = "8080";
 
 
     protected string host ;
@@ -35,8 +35,8 @@ public abstract class WebSocketConnector : MonoBehaviour
 
         if (DesktopMode)
         {
-            host = "10.215.211.92";
-            port = "15000";
+            host = "localhost";
+            port = "8080";
             
         } else if (fixedProperties)
         {
