@@ -37,7 +37,7 @@ public class SaveManager : MonoBehaviour
             File.WriteAllText(path, json);
             print("Saved");
         }
-        catch (System.Exception e)
+        catch (System.Exception)
         {
             print("AAAAAAAAA");
         }
@@ -65,7 +65,7 @@ public class SaveManager : MonoBehaviour
             }
             catch (System.Exception e)
             {
-                print(e.Message);
+                print("Error loading player data: " + e.Message);
             }
         }
         else
