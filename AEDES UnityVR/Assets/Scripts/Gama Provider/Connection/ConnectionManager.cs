@@ -163,13 +163,13 @@ private String AgentToSendInfo = "simulation[0].unity_linker[0]";
     }
 
     // ############################################# UTILITY FUNCTIONS #############################################
-    public void TryConnectionToServer() {
+    public async void TryConnectionToServer() {
         if(IsConnectionState(ConnectionState.DISCONNECTED)) {
             Debug.Log("ConnectionManager: Attempting to connect to middleware - ws://" + host + ":" + port + "/");
             connectionRequested = true;
             UpdateConnectionState(ConnectionState.PENDING);
 
-            GetSocket().Connect();
+            await GetSocket().Connect();
              
            
         } else {
@@ -178,10 +178,10 @@ private String AgentToSendInfo = "simulation[0].unity_linker[0]";
         
     }
      
-    public void DisconnectFromServer() {
+    public async void DisconnectFromServer() {
         if(!IsConnectionState(ConnectionState.DISCONNECTED)) {
             Debug.Log("ConnectionManager: Disconnecting from middleware...");
-            GetSocket().Close();
+            await GetSocket().Close();
             UpdateConnectionState(ConnectionState.DISCONNECTED);
         } else {
             Debug.LogWarning("ConnectionManager: Already disconnected from middleware");
